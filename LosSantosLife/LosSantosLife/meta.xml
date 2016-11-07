@@ -1,0 +1,5 @@
+﻿<meta>
+  <info name="Los Santos Life" async="true" author="Kingstone" type="gamemode" />
+
+  <script src="LosSantosLife.dll" type="server" lang="compiled" />
+</meta>
