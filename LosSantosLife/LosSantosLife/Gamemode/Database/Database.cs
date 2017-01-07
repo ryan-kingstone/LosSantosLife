@@ -1,18 +1,19 @@
-﻿using MySql.Data.Entity;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using MySql.Data.Entity;
 
-/// <summary>
-/// The database class is used to create the database models and relationships.
-/// </summary>
-[DbConfigurationType(typeof(MySqlEFConfiguration))]
-public class Database : DbContext
+namespace LosSantosLife.Gamemode.Database
 {
-    // Connect to the database using stored credentials (server.cfg)
-    public Database() : base(
-        $"data source={Config.GetKeyString("#server")};database={Config.GetKeyString("#database")};uid={Config.GetKeyString("#user")};pwd={Config.GetKeyString("#password")};"
-        )
-    { }
-    // 
+    /// <summary>
+    /// The database class is used to create the database models and relationships.
+    /// </summary>
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
+    public class Database : DbContext
+    {
+        // Connect to the database using stored credentials (server.cfg)
+        public Database() : base($"data source={Life.LifeSettings.MySqlHost};database={Life.LifeSettings.MySqlDatabase};uid={Life.LifeSettings.MySqlUser};pwd={Life.LifeSettings.MySqlPassword};Convert Zero Datetime=True;Allow Zero Datetime=True")
+        {
+        }
 
-    public DbSet<UserModel> User { get; set; }
+        public DbSet<UserModel> User { get; set; }
+    }
 }

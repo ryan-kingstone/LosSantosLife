@@ -70,10 +70,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gamemode\Database\Database.cs" />
-    <Compile Include="Gamemode\Database\Models\UserTable.cs" />
+    <Compile Include="Gamemode\Database\Models\UserModel.cs" />
+    <Compile Include="Gamemode\Features\LifeSettings.cs" />
     <Compile Include="Gamemode\Library\LifeLogging.cs" />
     <Compile Include="Gamemode\Library\Specific\LinkerTime.cs" />
-    <Compile Include="Gamemode\LosSantosLife.cs" />
+    <Compile Include="Gamemode\LifeInstance.cs" />
+    <Compile Include="Gamemode\Life.cs" />
     <Compile Include="Gamemode\Managers\AccountManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -86,9 +88,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Gamemode\Features\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>(ROBOCOPY "$(TargetDir)\" "$(LIFE_OUT_DIR)\" /MIR) ^&amp; IF %25ERRORLEVEL%25 LEQ 1 exit 0</PostBuildEvent>

@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using GTANetworkServer;
+using LosSantosLife.Gamemode;
 
 /// <summary>
 /// The users table holds the user variables and such.
@@ -70,18 +72,8 @@ public class UserModel
 
 public static class User
 {
-    public static List<UserModel> UserList = new List<UserModel>();
-
     public static UserModel GetPlayerData(Client player)
     {
-        UserModel userModel = new UserModel();
-        foreach (var user in UserList)
-        {
-            if (user.PlayerClient == player)
-            {
-                userModel = user;
-            }
-        }
-        return userModel;
+        return LifeInstance.UserList.FirstOrDefault(p => p.PlayerClient == player);
     }
 }
