@@ -12,6 +12,7 @@ namespace LosSantosLife.Gamemode.Database
         // Connect to the database using stored credentials (server.cfg)
         public Database() : base($"data source={Life.LifeSettings.MySqlHost};database={Life.LifeSettings.MySqlDatabase};uid={Life.LifeSettings.MySqlUser};pwd={Life.LifeSettings.MySqlPassword};Convert Zero Datetime=True;Allow Zero Datetime=True")
         {
+            Configuration.AutoDetectChangesEnabled = false;
         }
 
         public DbSet<UserModel> User { get; set; }
