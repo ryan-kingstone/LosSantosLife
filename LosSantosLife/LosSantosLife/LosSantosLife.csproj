@@ -72,6 +72,7 @@
     <Compile Include="Gamemode\Database\Database.cs" />
     <Compile Include="Gamemode\Database\Models\UserModel.cs" />
     <Compile Include="Gamemode\Features\LifeSettings.cs" />
+    <Compile Include="Gamemode\Library\LifeAuthentication.cs" />
     <Compile Include="Gamemode\Library\LifeLogging.cs" />
     <Compile Include="Gamemode\Library\Specific\LinkerTime.cs" />
     <Compile Include="Gamemode\LifeInstance.cs" />

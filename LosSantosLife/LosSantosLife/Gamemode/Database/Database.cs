@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using LosSantosLife.Gamemode.Database.Models;
 using MySql.Data.Entity;
 
 namespace LosSantosLife.Gamemode.Database

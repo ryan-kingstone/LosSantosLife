@@ -1,24 +1,44 @@
 ﻿using GTANetworkServer;
-using DevOne.Security.Cryptography.BCrypt;
+using LosSantosLife.Gamemode.Library;
 
-public class AccountManager : Script
+namespace LosSantosLife.Gamemode.Managers
 {
-    public delegate void AccountEvent(Client player);
-    public static event AccountEvent OnAccountLogin;
-    public static event AccountEvent OnAccountDisconnectPreDataCleanup;
-
-    public AccountManager()
+    public class AccountManager : Script
     {
-        
-    }
+        //public API API = new API();
 
-    [Command("login")]
-    public void LoginCommand(Client player, string user, string password)
-    {
-        var charData = User.GetPlayerData(player);
-        if (charData.PlayerClient != null)
+        public delegate void AccountEvent(Client player);
+        public static event AccountEvent OnAccountLogin;
+
+        public AccountManager()
         {
-            API.sendChatMessageToPlayer(player, $"~r~Error:~w~ You're already logged in");
+            LifeLogging.Log("Initializing AccountManager", LogType.Info);
+        }
+
+        [Command("login")]
+        public void LoginCommand(Client player, string username, string password)
+        {
+            if (LifeAuthentication.AuthenticateUser(player, username, password))
+            {
+                OnAccountLogin?.Invoke(player);
+                LifeLogging.Log($"{player.name} logged in successfully.");
+            }
+            else
+            {
+                // 3 password attempt kick:
+            }
+        }
+
+        [Command("register")]
+        public void RegisterCommand(Client player, string username, string password)
+        {
+            LifeAuthentication.RegisterUser(player, username, password);
+        }
+
+        [Command("test")]
+        public void LoginTestCommand(Client player)
+        {
+            player.sendChatMessage("Test command works.");
         }
     }
 }

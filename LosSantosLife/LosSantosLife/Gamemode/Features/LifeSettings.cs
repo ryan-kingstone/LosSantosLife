@@ -10,6 +10,10 @@ namespace LosSantosLife.Gamemode.Features
         [XmlElement("is_production")]
         public bool IsProduction { get; set; }
 
+        // Production mode toggle
+        [XmlElement("can_multiaccount")]
+        public bool CanMultiAccount { get; set; }
+
         // MySQL
         [XmlElement("mysql_host")]
         public string MySqlHost { get; set; }
@@ -23,6 +27,7 @@ namespace LosSantosLife.Gamemode.Features
         public LifeSettings()
         {
             IsProduction = false;
+            CanMultiAccount = true;
 
             // Default mysql options
             MySqlHost = "localhost";
