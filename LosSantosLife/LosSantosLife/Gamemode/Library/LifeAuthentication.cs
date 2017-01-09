@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using DevOne.Security.Cryptography.BCrypt;
 using GTANetworkServer;
 using LosSantosLife.Gamemode.Database.Models;
@@ -19,7 +21,30 @@ namespace LosSantosLife.Gamemode.Library
                 return false;
             }
 
-            return false;
+            using (var database = new Database.Database())
+            {
+                var userQuery = (from user in database.User
+                                where user.UserName == username
+                                select user).AsNoTracking().FirstOrDefault();
+
+                if (userQuery != null)
+                {
+                    if (BCryptHelper.CheckPassword(password, userQuery.Password))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        requestClient.sendChatMessage("~r~The username or password was incorrect.");
+                        return false;
+                    }
+                }
+                else
+                {
+                    requestClient.sendChatMessage("~r~No valid user was found.");
+                    return false;
+                }
+            }
         }
 
         public static void RegisterUser(Client requestClient, string username, string password)
