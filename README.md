@@ -1,4 +1,6 @@
 # Los Santos Life
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 A gamemode where users play as a character in the world, among other players simultaneously in a multiplayer environment.
 Harnessing the power of GTA Network, Los Santos Life is able to bring a roleplay experience to it's users.
 
